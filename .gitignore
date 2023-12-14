@@ -136,3 +136,23 @@ app.*.symbols
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
 !.vscode/settings.json
+
+.vscode/
+*.db
+*.bat
+*.exp
+*.pdb
+*.dll
+*.a
+*.so
+*.db-shm
+*.db-wal
+package-lock.json
+*.sqlite
+node_modules/
+build/
+# C benchmark binary
+bench/bench
+deno.lock
+bun.lockb
+.DS_Store
