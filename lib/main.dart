@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   List<TodoItem> allItems = await database.select(database.todoItems).get();
   for (int i = 0; i < allItems.length; i++) {
-    if (allItems[i].id> InputOfDataBase) {
+    if (allItems[i].id > InputOfDataBase) {
       InputOfDataBase = allItems[i].id;
     }
   }
@@ -60,9 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          Text("$InputOfDataBase")
-        ],
+        actions: [Text("$InputOfDataBase")],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),

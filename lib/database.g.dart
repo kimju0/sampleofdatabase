@@ -8,7 +8,9 @@ class $TodoItemsTable extends TodoItems
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
+
   $TodoItemsTable(this.attachedDatabase, [this._alias]);
+
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -38,13 +40,17 @@ class $TodoItemsTable extends TodoItems
   late final GeneratedColumn<int> category = GeneratedColumn<int>(
       'category', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
+
   @override
   List<GeneratedColumn> get $columns => [id, title, content, category];
+
   @override
   String get aliasedName => _alias ?? actualTableName;
+
   @override
   String get actualTableName => $name;
   static const String $name = 'todo_items';
+
   @override
   VerificationContext validateIntegrity(Insertable<TodoItem> instance,
       {bool isInserting = false}) {
@@ -74,6 +80,7 @@ class $TodoItemsTable extends TodoItems
 
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
+
   @override
   TodoItem map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -100,11 +107,13 @@ class TodoItem extends DataClass implements Insertable<TodoItem> {
   final String title;
   final String content;
   final int? category;
+
   const TodoItem(
       {required this.id,
       required this.title,
       required this.content,
       this.category});
+
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -138,6 +147,7 @@ class TodoItem extends DataClass implements Insertable<TodoItem> {
       category: serializer.fromJson<int?>(json['category']),
     );
   }
+
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
@@ -160,6 +170,7 @@ class TodoItem extends DataClass implements Insertable<TodoItem> {
         content: content ?? this.content,
         category: category.present ? category.value : this.category,
       );
+
   @override
   String toString() {
     return (StringBuffer('TodoItem(')
@@ -173,6 +184,7 @@ class TodoItem extends DataClass implements Insertable<TodoItem> {
 
   @override
   int get hashCode => Object.hash(id, title, content, category);
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -188,12 +200,14 @@ class TodoItemsCompanion extends UpdateCompanion<TodoItem> {
   final Value<String> title;
   final Value<String> content;
   final Value<int?> category;
+
   const TodoItemsCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
     this.content = const Value.absent(),
     this.category = const Value.absent(),
   });
+
   TodoItemsCompanion.insert({
     this.id = const Value.absent(),
     required String title,
@@ -201,6 +215,7 @@ class TodoItemsCompanion extends UpdateCompanion<TodoItem> {
     this.category = const Value.absent(),
   })  : title = Value(title),
         content = Value(content);
+
   static Insertable<TodoItem> custom({
     Expression<int>? id,
     Expression<String>? title,
@@ -261,9 +276,11 @@ class TodoItemsCompanion extends UpdateCompanion<TodoItem> {
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   late final $TodoItemsTable todoItems = $TodoItemsTable(this);
+
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
+
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [todoItems];
 }
